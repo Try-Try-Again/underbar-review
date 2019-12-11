@@ -88,7 +88,7 @@
     var results = [];
     _.each(collection, function(currentElement) {
       if (test(currentElement)) {
-        results.push(currentElement)
+        results.push(currentElement);
       }
     });
     return results;
@@ -99,17 +99,17 @@
     return _.filter(collection, function(currentElement) {
       return !test(currentElement);
     });
-  }
+  };
 
-    // TIP: see if you can re-use _.filter() here, without simply
-    // copying code in and modifying it
+  // TIP: see if you can re-use _.filter() here, without simply
+  // copying code in and modifying it
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
     //declare empty results array
     var results = [];
     //if unsorted arg does not exist...
-    if(arguments.length === 1 || isSorted === false) {
+    if (arguments.length === 1 || isSorted === false) {
       //iterate over each element in the array
       for (var i = 0; i < array.length; i++) {
         //push all unique numbers to results
@@ -128,9 +128,9 @@
     // the members, it also maintains an array of results.
     var results = [];
 
-    _.each(collection, function(currentElement){
+    _.each(collection, function(currentElement) {
       results.push(iterator(currentElement));
-    })
+    });
     return results;
   };
 
@@ -174,12 +174,12 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     var start = arguments.length === 2;
-    _.each(collection, function(currentElement){
+    _.each(collection, function(currentElement) {
       if (start) {
         accumulator = currentElement;
         start = false;
       } else {
-        accumulator = iterator(accumulator,currentElement)
+        accumulator = iterator(accumulator, currentElement);
       }
     });
     return accumulator;
@@ -197,15 +197,13 @@
     }, false);
   };
 
-
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     iterator = iterator || _.identity;
     return !!_.reduce(collection, function(isTrueThisFar, value) {
       return isTrueThisFar && iterator(value);
-    },true);
+    }, true);
   };
-
 
 
   // Determine whether any of the elements pass a truth test. If no iterator is
@@ -214,10 +212,8 @@
     iterator = iterator || _.identity;
     return !!_.reduce(collection, function(isTrueThisFar, value) {
       return isTrueThisFar || iterator(value);
-    },false);
+    }, false);
   };
-    // TIP: There's a very clever way to re-use every() here.
-
 
   /**
    * OBJECTS
@@ -237,20 +233,18 @@
   //   }, {
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
-   _.extend = function(obj) {
-     obj = Array.prototype.slice.call(arguments);
-     var destination = obj[0];
-     var sources = obj.slice(1);
+  _.extend = function(obj) {
+    obj = Array.prototype.slice.call(arguments);
+    var destination = obj[0];
+    var sources = obj.slice(1);
 
-     _.each(sources, (source) => {
+    _.each(sources, (source) => {
       _.each(Object.keys(source), (key) => {
         destination[key] = source[key];
       });
     });
-   return destination;
+    return destination;
   };
-
-
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
@@ -260,15 +254,14 @@
     var sources = obj.slice(1);
 
     _.each(sources, (source) => {
-     _.each(Object.keys(source), (key) => {
-       if (typeof destination[key] === 'undefined') {
-        destination[key] = source[key];
-       }
-     });
-   });
-  return destination;
- };
-
+      _.each(Object.keys(source), (key) => {
+        if (typeof destination[key] === 'undefined') {
+          destination[key] = source[key];
+        }
+      });
+    });
+    return destination;
+  };
 
   /**
    * FUNCTIONS
